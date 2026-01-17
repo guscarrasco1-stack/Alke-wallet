@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Movimientos | Alke Wallet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    .transaction-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .deposit { background-color: #4caf50; }      /* Verde */
+    .withdraw { background-color: #f44336; }     /* Rojo */
+    .send { background-color: #ff9800; }         /* Naranja */
+  </style>
+</head>
+<body>
+
+<main class="container py-4">
+  <h3 class="mb-4 text-center">📜 Últimos Movimientos</h3>
+  <ul id="history-list" class="list-unstyled"></ul>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="assets/js/wallet.js"></script>
+<script>
+$(document).ready(function () {
+
+  function renderHistory() {
+    const list = $("#history-list");
+    list.empty();
+
+    getHistory().forEach(m => {
+      let typeClass = "";
+      if (m.type === "Depósito") typeClass = "deposit";
+      else if (m.type === "Retiro") typeClass = "withdraw";
+      else if (m.type === "Envío") typeClass = "send";
+
+      const item = `<li class="transaction-item ${typeClass}">
+        <span>${m.type} ${m.contact ? 'a ' + m.contact : ''} - ${m.date}</span>
+        <strong>$${m.amount}</strong>
+      </li>`;
+      list.append(item);
+    });
+  }
+
+  renderHistory();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* ====== Estilos generales ====== */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+#balance, #menu-balance {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* ====== Botones ====== */
+button, .btn {
+  border-radius: 50px;
+  height: 45px;
+  font-size: 1.1rem;
+}
+
+/* ====== Menu Tarjetas ====== */
+.menu-card {
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  color: #fff;
+  padding: 30px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+.menu-card .icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.deposit { background: linear-gradient(135deg, #4caf50, #81c784); }
+.send { background: linear-gradient(135deg, #ff9800, #ffc107); }
+.history { background: linear-gradient(135deg, #2196f3, #64b5f6); }
+
+/* ====== Inputs ====== */
+input.form-control {
+  height: 45px;
+  font-size: 1rem;
+}
+
+/* ====== Alerts ====== */
+.alert { margin-top: 10px; }
+
+/* ====== Historial movimientos ====== */
+#history-list li, #recent-moves li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+}
+.deposit-move { background-color: #d4edda; color: #155724; }
+.withdraw-move { background-color: #f8d7da; color: #721c24; }
+.send-move { background-color: #fff3cd; color: #856404; }
+
+/* ====== Responsive ====== */
+@media (max-width: 576px){
+  #menu-balance { font-size: 2rem; }
+  .menu-card .icon { font-size: 2.5rem; }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Depósitos | Alke Wallet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-primary px-3">
+  <span class="navbar-brand">Alke Wallet</span>
+  <a href="menu.html" class="btn btn-outline-light btn-sm">Volver</a>
+</nav>
+
+<main class="container py-4">
+  <div class="card shadow p-4 mb-4 text-center">
+    <h5>Saldo disponible</h5>
+    <h2 id="balance">$0</h2>
+  </div>
+
+  <div class="card shadow p-4">
+    <input id="amount-input" type="number" class="form-control mb-3" placeholder="Monto">
+    <div class="d-flex gap-2">
+      <button id="deposit-btn" class="btn btn-success w-100">Depositar</button>
+      <button id="withdraw-btn" class="btn btn-danger w-100">Retirar</button>
+    </div>
+    <div id="alertBox" class="mt-3"></div>
+  </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="assets/js/wallet.js"></script>
+<script>
+$(document).ready(function () {
+  $("#deposit-btn").click(function () {
+    const amount = Number($("#amount-input").val());
+    if (amount > 0) {
+      addMovement("Depósito", amount);
+      updateUI();
+      renderHistory();
+      $("#alertBox").html('<div class="alert alert-success">Depósito de $' + amount + ' realizado con éxito</div>');
+      $("#amount-input").val("");
+    } else {
+      $("#alertBox").html('<div class="alert alert-danger">Ingrese un monto válido</div>');
+    }
+  });
+
+  $("#withdraw-btn").click(function () {
+    const amount = Number($("#amount-input").val());
+    if (amount > 0 && amount <= getBalance()) {
+      addMovement("Retiro", amount);
+      updateUI();
+      renderHistory();
+      $("#alertBox").html('<div class="alert alert-success">Retiro de $' + amount + ' realizado con éxito</div>');
+      $("#amount-input").val("");
+    } else if (amount > getBalance()) {
+      $("#alertBox").html('<div class="alert alert-danger">Saldo insuficiente</div>');
+    } else {
+      $("#alertBox").html('<div class="alert alert-danger">Ingrese un monto válido</div>');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
